@@ -1,23 +1,28 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
+import { BrowserRouter, Switch, Route, withRouter } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 import Home from './containers/Home';
 import About from './containers/About';
 
-const members = [
-  { id: 1, name: 'Hisashi', info: 'リードギター' },
-  { id: 2, name: 'TERU', info: 'ボーカル' },
-  { id: 3, name: 'TAKURO', info: 'ギター' },
-  { id: 4, name: 'JIRO', info: 'ベース' },
-]
-
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: 'https://imgsv.nikon-image.com/products/slr/lineup/d5300/img/sample/pic_03_l.jpg',
+    }
+  }
+
+
+  handleToAboutPage = () => {
+    this.props.history.push({
+      pathname: '/about:cd',
+      state: { text: this.state.text }
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -26,22 +31,22 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
-        <p className="App-intro">
-          <Router>
-            <div>
-              <ul>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/about">About</Link></li>
-              </ul>
-              <hr />
-              <Route exact path="/:cd" component={Home} />
-              <Route path="/about" component={About} />
-            </div>
-          </Router>
-        </p>
+        <BrowserRouter>
+          <div>
+            <Switch>
+              <Route exact path={'/'} component={Home} />
+              <Route path={'/about'} component={About} />
+            </Switch>
+          </div>
+        </BrowserRouter>
+        <div>
+          <button onClick={this.handleToAboutPage}>
+            aboutページへ遷移する
+        </button>
+        </div>
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);
