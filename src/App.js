@@ -10,6 +10,13 @@ import './App.css';
 import Home from './containers/Home';
 import About from './containers/About';
 
+const members = [
+  { id: 1, name: 'Hisashi', info: 'リードギター' },
+  { id: 2, name: 'TERU', info: 'ボーカル' },
+  { id: 3, name: 'TAKURO', info: 'ギター' },
+  { id: 4, name: 'JIRO', info: 'ベース' },
+]
+
 class App extends Component {
   render() {
     return (
@@ -27,7 +34,7 @@ class App extends Component {
                 <li><Link to="/about">About</Link></li>
               </ul>
               <hr />
-              <Route exact path="/" component={Home} />
+              <Route exact path="/:cd" component={Home} />
               <Route path="/about" component={About} />
             </div>
           </Router>
