@@ -13,7 +13,7 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: 'https://imgsv.nikon-image.com/products/slr/lineup/d5300/img/sample/pic_03_l.jpg',
+            text: 'https://cweb.canon.jp/eos/lineup/r/image/downloads/sample02.jpg',
         }
     }
     randomText = () => {
